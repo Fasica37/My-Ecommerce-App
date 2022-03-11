@@ -9,22 +9,26 @@ import { Product, PRODUCTS } from './product.object';
 })
 export class ProductComponent implements OnInit {
 
-product = PRODUCTS;
+products = PRODUCTS;
 
 
 constructor(private router: Router){ }
 
   ngOnInit(): void {
-    
+    console.log(this.products);
 
   }
   editProduct(id: number){
     this.router.navigateByUrl('/products/edit/' + id); // ‘id’ is called parameter
 }
 removeProduct(id: number){
-  this.product = this.product.filter(product =>product.id != id);
-
+ this.products = this.products.filter(products =>products.id != id);
+ console.log(this.products);
 }
+  addProduct(){
+    this.router.navigateByUrl('products/add' );
+    console.log(this.products);
+  }
 
 
 }

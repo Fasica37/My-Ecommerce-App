@@ -16,10 +16,11 @@ export class AddProductComponent implements OnInit {
      }
 
   ngOnInit(): void {
+    console.log(this.products);
   }
 
   addProduct(product: any){
-    this.id = this.products.length;
+    this.id = this.products.length + 1;
     let newProduct = {id: this.id, name: product.name, imageUrl: product.imageUrl, price: product.price, description: product.description }
     this.products.push(newProduct);
     this.route.navigateByUrl('products');

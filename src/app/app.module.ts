@@ -5,9 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { CustomerComponent } from './customer/customer.component';
 import { EditProductComponentComponent } from './edit-product-component/edit-product-component.component';
 import { AddProductComponent } from './add-product/add-product.component';
+import { EditCustomerComponent } from './edit-customer/edit-customer.component';
+import { AddCustomerComponent } from './add-customer/add-customer.component';
+import { ProductService } from './product/product.service';
 
 @NgModule({
   declarations: [
@@ -15,14 +19,17 @@ import { AddProductComponent } from './add-product/add-product.component';
     ProductComponent,
     CustomerComponent,
     EditProductComponentComponent,
-    AddProductComponent
+    AddProductComponent,
+    EditCustomerComponent,
+    AddCustomerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-<form (ngSubmit)="addProduct(f['value'])" #f="ngForm">
+<form (ngSubmit)="addCustomer(f['value'])" #f="ngForm">
   <label for="inputName" class="form-label">Name</label>
   <input
     [ngModel]
@@ -20,21 +20,21 @@
     </div>
   </div>
 
-  <label for="inputPrice" class="form-label">Price</label>
+  <label for="inputEmail" class="form-label">Email</label>
   <input
     [ngModel]
-    #price="ngModel"
-    name="price"
-    type="number"
+    #email="ngModel"
+    name="email"
+    type="type"
     class="form-control"
-    id="inputPrice"
+    id="inputEmail"
     required
   />
   <div
-    *ngIf="price.invalid && (price.dirty || price.touched)"
+    *ngIf="email.invalid && (email.dirty || email.touched)"
     class="alert alert-danger"
   >
-    <div *ngIf="price.errors?.['required']">Price is required.</div>
+    <div *ngIf="email.errors?.['required']">Email is required.</div>
   </div>
   <label for="inputImageUrl" class="form-label">Image url</label>
   <input
@@ -52,21 +52,21 @@
   >
     <div *ngIf="imageUrl.errors?.['required']">imageUrl is required.</div>
   </div>
-  <label for="inputDescription" class="form-label">Description</label>
+  <label for="inputGender" class="form-label">Gender</label>
   <input
     [ngModel]
-    #description="ngModel"
-    name="description"
+    #gender="ngModel"
+    name="gender"
     type="text"
     class="form-control"
-    id="inputDescription"
+    id="inputGender"
     required
   />
   <div
-    *ngIf="description.invalid && (description.dirty || description.touched)"
+    *ngIf="gender.invalid && (gender.dirty || gender.touched)"
     class="alert alert-danger"
   >
-    <div *ngIf="description.errors?.['required']">description is required.</div>
+    <div *ngIf="gender.errors?.['required']">description is required.</div>
   </div>
 
   <button type="submit" class="btn btn-primary" [disabled]="!f.valid">

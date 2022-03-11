@@ -1,3 +1,8 @@
+<br />
+<div class="btn1">
+  <button class="btn btn-primary" (click)="addCustomer()">Add customers</button>
+</div>
+<br />
 <table class="table">
   <thead>
     <tr>
@@ -25,6 +30,18 @@
       </td>
       <td>{{ customer.email }}</td>
       <td>{{ customer.gender }}</td>
+      <button
+        (click)="editCustomer(customer.id)"
+        class="btnEdit btn-outline-success"
+      >
+        Edit
+      </button>
+      <button
+        (click)="removeCustomer(customer.id)"
+        class="btnRemove btn-outline-success"
+      >
+        Remove
+      </button>
     </tr>
   </tbody>
 </table>

@@ -1,8 +1,8 @@
-<form (ngSubmit)="updateProduct()" #f="ngForm">
+<form (ngSubmit)="updateCustomer()" #f="ngForm">
   <label for="inputName" class="form-label">Name</label>
   <input
-    [(ngModel)]="newProduct.name"
-    [placeholder]="selectedProduct.name"
+    [(ngModel)]="newCustomer.name"
+    [placeholder]="selectedCustomer.name"
     id="name"
     name="name"
     #name="ngModel"
@@ -22,23 +22,24 @@
     </div>
   </div>
 
-  <label for="inputPrice" class="form-label">Price</label>
+  <label for="inputEmail" class="form-label">Email</label>
   <input
-    [(ngModel)]="newProduct.price"
-    [placeholder]="selectedProduct.price"
-    #price="ngModel"
-    name="price"
-    type="number"
+    [(ngModel)]="newCustomer.email"
+    [placeholder]="selectedCustomer.email"
+    #email="ngModel"
+    name="email"
+    type="text"
     class="form-control"
-    id="inputPrice"
+    id="inputEmail"
     required
   />
   <div
-    *ngIf="price.invalid && (price.dirty || price.touched)"
+    *ngIf="email.invalid && (email.dirty || email.touched)"
     class="alert alert-danger"
   >
-    <div *ngIf="price.errors?.['required']">Price is required.</div>
+    <div *ngIf="email.errors?.['required']">Email is required.</div>
   </div>
+
   <button type="submit" class="btn btn-primary" [disabled]="!f.valid">
     Submit
   </button>

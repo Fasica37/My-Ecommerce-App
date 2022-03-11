@@ -3,3 +3,13 @@ table {
   width: 95%;
   margin: auto;
 }
+.btn1 {
+  margin-left: 90%;
+}
+.btnEdit {
+  margin-left: 10%;
+}
+
+.btnRemove {
+  margin-left: 10%;
+}
