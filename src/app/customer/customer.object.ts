@@ -1,7 +1,7 @@
 export class Customer{
     id: number;
     name: string;
-    imageUrl: string;
+    avatar: string;
     gender: String;
     email: String;
 
@@ -9,7 +9,7 @@ export class Customer{
     constructor(){
         this.id = 0;
         this.name = '';
-        this.imageUrl = '';
+        this.avatar = '';
         this.gender = '';
         this.email = '';
  }  

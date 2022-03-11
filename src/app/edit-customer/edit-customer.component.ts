@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CustomerServiceService } from '../customer/customer-service.service';
 import { Customer} from '../customer/customer.object';
 
 @Component({
@@ -13,23 +14,28 @@ export class EditCustomerComponent implements OnInit {
   selectedCustomer = new Customer();
   newCustomer = new Customer();
 
-  constructor(private route: Router, private routeA: ActivatedRoute){ }
+  constructor(private route: Router, private routeA: ActivatedRoute, private customerService: CustomerServiceService){ }
 
   ngOnInit(): void {
-    this.routeA.params.subscribe(
-      param => {
-        for (let customer of this.customers){
-          if (customer.id == param['id']){ this.selectedCustomer = customer; }}
-          console.log(this.selectedCustomer)
-}   		
+    this.customerService.getCustomers().subscribe(
+      data => { this.customers = data; this.routeA.params.subscribe(
+        param => {
+          for (let customer of this.customers){
+            if (customer.id == param['id']){ this.selectedCustomer = customer; }}
+  }   		
+      );}
     );
+
+    
    }
 
    updateCustomer(){
-    this.selectedCustomer.name = this.newCustomer.name;
-    this.selectedCustomer.email = this.newCustomer.email;
-    this.newCustomer = new Customer();
-    this.route.navigateByUrl('customers');
-  }
-
-}
+    this.customerService.updateCustomers(this.selectedCustomer.id, this.newCustomer).subscribe(data=>{this.customerService.getCustomers().subscribe(
+      data => {this.customers = data}
+      );
+      this.route.navigateByUrl('customers');}
+          );
+          
+      }
+    
+    }

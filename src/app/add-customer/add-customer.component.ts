@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CustomerServiceService } from '../customer/customer-service.service';
 import { Customer } from '../customer/customer.object';
+import { AddCustomerServiceService } from './add-customer-service.service';
 
 @Component({
   selector: 'app-add-customer',
@@ -11,7 +13,7 @@ export class AddCustomerComponent implements OnInit {
   customers :Customer[]= [];
   id: number;
   
-    constructor(private route: Router){
+    constructor(private route: Router, private addCustomerService: AddCustomerServiceService, private customerService: CustomerServiceService){
       this.id = 0;
      }
 
@@ -20,8 +22,12 @@ export class AddCustomerComponent implements OnInit {
 
   addCustomer(customer: any){
     this.id = this.customers.length + 1;
-    let newCustomer = {id: this.id, name: customer.name, imageUrl: customer.imageUrl, gender: customer.gender, email: customer.email }
-    this.customers.push(newCustomer);
+    let newCustomer = {id: this.id, name: customer.name, avatar: customer.avatar, gender: customer.gender, email: customer.email }
+    this.addCustomerService.addCustomers(newCustomer).subscribe(
+      );
+      this.customerService.getCustomers().subscribe(
+        data => {this.customers = data}
+      );
     this.route.navigateByUrl('customers');
   }
 
