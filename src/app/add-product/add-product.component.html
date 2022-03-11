@@ -1,0 +1,75 @@
+<form (ngSubmit)="addProduct(f['value'])" #f="ngForm">
+  <label for="inputName" class="form-label">Name</label>
+  <input
+    [ngModel]
+    name="name"
+    #name="ngModel"
+    type="text"
+    class="form-control"
+    id="inputName"
+    required
+    minlength="4"
+  />
+  <div
+    *ngIf="name.invalid && (name.dirty || name.touched)"
+    class="alert alert-danger"
+  >
+    <div *ngIf="name.errors?.['required']">Name is required.</div>
+    <div *ngIf="name.errors?.['minlength']">
+      Name must be at least 4 characters long.
+    </div>
+  </div>
+
+  <label for="inputPrice" class="form-label">Price</label>
+  <input
+    [ngModel]
+    #price="ngModel"
+    name="price"
+    type="number"
+    class="form-control"
+    id="inputPrice"
+    required
+  />
+  <div
+    *ngIf="price.invalid && (price.dirty || price.touched)"
+    class="alert alert-danger"
+  >
+    <div *ngIf="price.errors?.['required']">Price is required.</div>
+  </div>
+  <label for="inputPrice" class="form-label">Image url</label>
+  <input
+    [ngModel]
+    #imageUrl="ngModel"
+    name="imageUrl"
+    type="text"
+    class="form-control"
+    id="inputImageUrl"
+    required
+  />
+  <div
+    *ngIf="imageUrl.invalid && (imageUrl.dirty || imageUrl.touched)"
+    class="alert alert-danger"
+  >
+    <div *ngIf="imageUrl.errors?.['required']">imageUrl is required.</div>
+  </div>
+  <label for="inputPrice" class="form-label">Description</label>
+  <input
+    [ngModel]
+    #description="ngModel"
+    name="description"
+    type="text"
+    class="form-control"
+    id="inputDescription"
+    required
+  />
+  <div
+    *ngIf="description.invalid && (description.dirty || description.touched)"
+    class="alert alert-danger"
+  >
+    <div *ngIf="description.errors?.['required']">description is required.</div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="!f.valid">
+    Submit
+  </button>
+</form>

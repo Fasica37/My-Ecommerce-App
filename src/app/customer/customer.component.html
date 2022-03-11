@@ -1,0 +1,30 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Avator</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Gender</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let customer of customers">
+    <tr>
+      <th scope="row">{{ customer.id }}</th>
+      <td>
+        <img
+          [src]="customer.imageUrl"
+          class="img-thumbnail"
+          alt="Person image"
+          height="100"
+          width="100"
+        />
+      </td>
+      <td>
+        <h5>{{ customer.name }}</h5>
+      </td>
+      <td>{{ customer.email }}</td>
+      <td>{{ customer.gender }}</td>
+    </tr>
+  </tbody>
+</table>
