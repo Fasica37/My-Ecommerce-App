@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CUSTOMERS } from './customer.object';
+import { CustomerServiceService } from './customer-service.service';
+import { Customer } from './customer.object';
 
 @Component({
   selector: 'app-customer',
@@ -9,19 +10,26 @@ import { CUSTOMERS } from './customer.object';
 })
 export class CustomerComponent implements OnInit {
 
-  customers = CUSTOMERS;
+  customers :Customer[]= [];
 
-  constructor(private router: Router){ }
+  constructor(private router: Router, private customerService: CustomerServiceService){ }
 
   ngOnInit(): void {
-   
+    this.customerService.getCustomers().subscribe(
+      data => {this.customers = data}
+    );
+    
   }
   editCustomer(id: number){
     this.router.navigateByUrl('customers/edit/' +id);
   }
 
   removeCustomer(id: number){
-    this.customers = this.customers.filter(customers =>customers.id != id);
+    this.customerService.removeCustomers(id).subscribe(data =>{
+      this.customerService.getCustomers().subscribe(
+        data => {this.customers = data}
+      );
+    });
   
   }
   addCustomer(){

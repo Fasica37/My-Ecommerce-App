@@ -12,6 +12,9 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { ProductService } from './product/product.service';
+import { AddProductServiceService } from './add-product/add-product-service.service';
+import { CustomerServiceService } from './customer/customer-service.service';
+import { AddCustomerServiceService } from './add-customer/add-customer-service.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,7 @@ import { ProductService } from './product/product.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [ProductService],
+  providers: [ProductService, AddProductServiceService,CustomerServiceService,AddCustomerServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

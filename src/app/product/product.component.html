@@ -5,7 +5,7 @@
 <br />
 <div class="row">
   <div class="card" *ngFor="let product of products" style="width: 30rem">
-    <img [src]="product.imageUrl" class="img-thumbnail" alt="..." />
+    <img [src]="product.avatar" class="img-thumbnail" alt="..." />
     <h3>{{ product.name }}</h3>
     <p class="card-text">
       {{ product.description }}

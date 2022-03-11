@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CUSTOMERS } from '../customer/customer.object';
+import { Customer } from '../customer/customer.object';
 
 @Component({
   selector: 'app-add-customer',
@@ -8,7 +8,7 @@ import { CUSTOMERS } from '../customer/customer.object';
   styleUrls: ['./add-customer.component.css']
 })
 export class AddCustomerComponent implements OnInit {
-  customers = CUSTOMERS; 
+  customers :Customer[]= [];
   id: number;
   
     constructor(private route: Router){

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Product, PRODUCTS } from '../product/product.object';
+import { Router } from '@angular/router';
+import { Product} from '../product/product.object';
+import { ProductService } from '../product/product.service';
+import { AddProductServiceService } from './add-product-service.service';
 
 @Component({
   selector: 'app-add-product',
@@ -8,10 +10,10 @@ import { Product, PRODUCTS } from '../product/product.object';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-  products = PRODUCTS; 
+  products: Product[] = []; 
   id: number;
   
-    constructor(private route: Router){
+    constructor(private route: Router, private addProductService: AddProductServiceService, private productService: ProductService){
       this.id = 0;
      }
 
@@ -21,9 +23,16 @@ export class AddProductComponent implements OnInit {
 
   addProduct(product: any){
     this.id = this.products.length + 1;
-    let newProduct = {id: this.id, name: product.name, imageUrl: product.imageUrl, price: product.price, description: product.description }
-    this.products.push(newProduct);
+    let newProduct = {id: this.id, name: product.name, avatar: product.avatar, price: product.price, description: product.description }
+ 
+   this.addProductService.addProducts(newProduct).subscribe(
+  );
+  this.productService.getProducts().subscribe(
+    data => {this.products = data}
+  );
     this.route.navigateByUrl('products');
   }
+
+  
 
 }

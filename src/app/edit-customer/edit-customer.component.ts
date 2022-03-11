@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Customer, CUSTOMERS } from '../customer/customer.object';
+import { Customer} from '../customer/customer.object';
 
 @Component({
   selector: 'app-edit-customer',
@@ -9,7 +9,7 @@ import { Customer, CUSTOMERS } from '../customer/customer.object';
 })
 export class EditCustomerComponent implements OnInit {
 
-  customers = CUSTOMERS;
+  customers :Customer[]= [];
   selectedCustomer = new Customer();
   newCustomer = new Customer();
 

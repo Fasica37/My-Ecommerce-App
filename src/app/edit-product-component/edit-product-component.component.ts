@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Product, PRODUCTS } from '../product/product.object';
+import { Product} from '../product/product.object';
+import { ProductService } from '../product/product.service';
 
 @Component({
   selector: 'app-edit-product-component',
@@ -9,29 +10,32 @@ import { Product, PRODUCTS } from '../product/product.object';
 })
 export class EditProductComponentComponent implements OnInit {
 
-  products = PRODUCTS; 
+  products : Product[] = []; 
 selectedProduct = new Product(); 
 newProduct = new Product();
 
-  constructor(private route: Router, private routeA: ActivatedRoute){ }
+  constructor(private route: Router, private routeA: ActivatedRoute, private productService: ProductService){ }
 
 
   ngOnInit(): void {
-    this.routeA.params.subscribe(
-      param => {
-        for (let product of this.products){
-          if (product.id == param['id']){ this.selectedProduct = product; }}
-          console.log(this.selectedProduct)
-}   		
+    this.productService.getProducts().subscribe(
+      data => { this.products = data; this.routeA.params.subscribe(
+        param => {
+          for (let product of this.products){
+            if (product.id == param['id']){ this.selectedProduct = product; }}
+  }   		
+      );}
     );
+
+    
    }
    updateProduct(){
-    this.selectedProduct.name = this.newProduct.name;
-    this.selectedProduct.price = this.newProduct.price;
-    this.newProduct = new Product();
-    this.route.navigateByUrl('products');
+    this.productService.updateProducts(this.selectedProduct.id, this.newProduct).subscribe(data=>{this.productService.getProducts().subscribe(
+      data => {this.products = data}
+    );
+  this.route.navigateByUrl('products');}
+      );
+      
   }
-
-  
 
 }
